@@ -1,0 +1,13 @@
+# Doxyfile
+PROJECT_NAME           = "mangen"
+PROJECT_BRIEF          = "Directory SHA-256 manifest generator"
+OUTPUT_DIRECTORY       = doc
+INPUT                  = src inc README.md
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */rfc6234/*
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+HAVE_DOT               = NO

@@ -1,8 +1,9 @@
 *.o
 *.obj
 *.out
+*.txt
 mangen
-doc/
+doc
 html/
 latex/
 .vscode/

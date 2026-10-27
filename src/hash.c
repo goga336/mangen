@@ -13,7 +13,7 @@
  */
 int hash_file(const char *path, const char *display_path)
 {
-    FILE *f = fopen(path, "rb");
+    FILE *f = fopen(path, "rb"); // Открытие файла в бинарном виде
     if (!f) {
         fprintf(stderr, "mangen: %s: %s\n", path, strerror(errno));
         return -1;
@@ -21,17 +21,17 @@ int hash_file(const char *path, const char *display_path)
 
 
 
-    SHA256Context ctx;
+    SHA256Context ctx;  // Инициализация контекста SHA-256
     if (SHA256Reset(&ctx) != shaSuccess) {
         fclose(f);
         fprintf(stderr, "mangen: %s: SHA256Reset failed\n", path);
         return -1;
     }
 
-    uint8_t buf[8192];
+    uint8_t buf[8192]; // Буфер 8Кб для чтения файла по блокам
     size_t n;
     while ((n = fread(buf, 1, sizeof(buf), f)) > 0) {
-        if (SHA256Input(&ctx, buf, (unsigned int)n) != shaSuccess) {
+        if (SHA256Input(&ctx, buf, (unsigned int)n) != shaSuccess) { // Отправка прочитанного блока в SHA-256
             fclose(f);
             fprintf(stderr, "mangen: %s: SHA256Input failed\n", path);
             return -1;
@@ -44,12 +44,13 @@ int hash_file(const char *path, const char *display_path)
     }
     fclose(f);
 
+    // Завершение хэширования
     uint8_t digest[SHA256HashSize];
     if (SHA256Result(&ctx, digest) != shaSuccess) {
         fprintf(stderr, "mangen: %s: SHA256Result failed\n", path);
         return -1;
     }
-
+    // Вывод результата
     printf("%s : ", display_path);
     for (int i = 0; i < SHA256HashSize; i++)
         printf("%02x", digest[i]);

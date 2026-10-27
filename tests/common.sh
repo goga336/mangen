@@ -1,6 +1,7 @@
 #!/bin/bash
 # tests/common.sh
-# Общие переменные и функции для всех тестов.
+
+# Общие переменные и функции для всех тестов
 
 MANGEN="./mangen"
 PASS=0
@@ -10,7 +11,7 @@ FAIL=0
 export TMPDIR=$(mktemp -d)
 trap 'rm -rf "$TMPDIR"' EXIT
 
-# Подготовка тестовых данных
+# Подготовка данных для тестов
 mkdir -p "$TMPDIR/test/sub"
 echo -n "Kaspersky" > "$TMPDIR/test/a.txt"
 echo -n "KasperskyOS" > "$TMPDIR/test/sub/b.txt"

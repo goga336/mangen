@@ -2,7 +2,9 @@
 PROJECT_NAME           = "mangen"
 PROJECT_BRIEF          = "Directory SHA-256 manifest generator"
 OUTPUT_DIRECTORY       = doc
-INPUT                  = src inc README.md
+INPUT                  = README.md src inc
+USE_MDFILE_AS_MAINPAGE = README.md
+FILE_PATTERNS          = *.c *.h *.md
 RECURSIVE              = YES
 EXCLUDE_PATTERNS       = */rfc6234/*
 GENERATE_HTML          = YES
